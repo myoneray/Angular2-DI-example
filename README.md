@@ -1,17 +1,8 @@
 
-# 依赖注入示例Angular2DIExample
-每个分支即为一种注入方法示例：
-
-##### 不需要声明依赖的注入方式（WHY:使用自己的注入器） -> 注入器注入：[injector](https://github.com/myoneray/Angular2-DI-example/tree/injector).
-##### 最常用的注入方式 -> NgModule依赖注入：[injector](https://github.com/myoneray/Angular2-DI-example/tree/NgModule).
-##### 可以重新命名的注入方式 -> 类注入[useClass](https://github.com/myoneray/Angular2-DI-example/tree/class).
-##### 可以重传入参数的的注入方式 -> 工厂注入[factory](https://github.com/myoneray/Angular2-DI-example/tree/factory).
+# 在应用中注入依赖
 
 
 
-
-
-# 其他信息如下：
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
