@@ -1,3 +1,18 @@
 <h1>
   {{title}}
 </h1>
+<hr>
+<button (click)='invokeApi()'>Invoke API</button><br>
+<h3>结果</h3>
+调整窗口大小:变小 |第一次点击Invoke API按钮控制台输出：<br>
+get  souserce!<br>
+get  souserce!<br>
+run SmaillService!<br>
+改变窗口大小:变大|  继续点击获取的依然不变:
+get  souserce!<br>
+get  souserce!<br>
+run SmaillService!<br>
+<h3>WHY?</h3>
+这是因为工厂函数只会在启动时执行一次。
+<hr>
+<button (click)='useInjectors()'>Use Injectors</button>

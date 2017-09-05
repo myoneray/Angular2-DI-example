@@ -1,26 +1,46 @@
-import { Component, Inject, } from '@angular/core';
-import {ApiService}from './service/api.service';
+import { Component, Inject, ReflectiveInjector} from '@angular/core';
+import { ApiService}from './service/api.service';
+import { ViewService}from './service/view.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
-// NO1 在部件的构造函数中声明要使用的对象
-// export class AppComponent {
-//   title = '在部件的构造函数中声明要使用的对象';
-//   constructor(private apiService: ApiService) {
-//     this.apiService.get();
-//   }
-// }
-
-//NO2 使用@Inject注解!
 
 export class AppComponent {
-  title = '使用NG2注解!';
-  private apiService: ApiService;
-  constructor( @Inject(ApiService) apiService) {
-    this.apiService = apiService;
-    this.apiService.get();
+  title = "2service";
+  constructor(
+    private apiService: ApiService,
+    @Inject('ApiServiceAlias') private aliasService: ApiService,
+    @Inject('SizeService') private sizeService: any) {
   }
+
+  // 固定获取service
+  invokeApi(): void {
+    this.apiService.get();
+    this.aliasService.get();
+    this.sizeService.run();
+  }
+
+  // 实时动态获取新的service
+  useInjectors(): void {
+    // 创建新的注入器
+    let injector: any = ReflectiveInjector.resolveAndCreate([
+      ViewService,
+      {
+        provide: 'OtherSizeService',
+        useFactory: (viewport: any) => {
+          return viewport.change();
+        },
+        deps: [ViewService]
+      }
+    ]);
+    // 获取 OtherSizeService实例
+    let sizeService: any = injector.get('OtherSizeService');
+    sizeService.run();
+  }
+
+
 }
