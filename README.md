@@ -1,7 +1,8 @@
 
-# 在应用中注入依赖
+# demo分支
 
-
+## NO1 在部件的构造函数中声明要使用的对象！
+## NO2 使用@Inject注解!
 
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
