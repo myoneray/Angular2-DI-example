@@ -1,13 +1,15 @@
 
-# 依赖注入示例Angular2DIExample
-每个分支即为一种注入方法示例：
+# 根据 生产/开发 环境返回不一样的URL
 
-##### 不需要声明依赖的注入方式（WHY:使用自己的注入器） -> 注入器注入：[injector](https://github.com/myoneray/Angular2-DI-example/tree/injector).
-##### 最常用的注入方式 -> NgModule依赖注入：[injector](https://github.com/myoneray/Angular2-DI-example/tree/NgModule).
-##### 可以重新命名的注入方式 -> 类注入[useClass](https://github.com/myoneray/Angular2-DI-example/tree/class).
-##### 可以重传入参数的的注入方式 -> 工厂注入[factory](https://github.com/myoneray/Angular2-DI-example/tree/factory).
-
-
+NO1、声明常量，会被用作API_URL依赖的令牌。也就是说angular会根据APIURL来存储返回的URL。
+NO2、这样当我们使用： `constructor( @Inject(API_URL) private apiUrl: string) { }` 时就会把API_URL的值注入到apiUrl中去。
+NO3、同时我们也导出API_URL常量方便在其他地方使用。 `export const API_URL: string = 'API_URL';`
+NO4、创建组件调用服务，并且根据运行环境返回不同的值。
+`{
+  provide: API_URL,
+  useValue: environment.production ? 'https://production-api.sample.com' : 'http://dev-api.sample.com'
+}`
+NO5、在`/environments/environment.prod`中配置环境参数
 
 
 
